@@ -1,0 +1,89 @@
+TestRig: SameHost
+- Application host: i7-2670QM @ 2.2Ghz, 8GB RAM - Windows 7 x64 - PostgreSQL 9.3.5 x64
+- DB host: Same
+- Network: N/A
+
+TestRig: RemoteDB
+- Application host: i7-2670QM @ 2.2Ghz, 8GB RAM - Windows 7 x64
+- DB host: i5-750 @ 2.67Ghz, 8GB RAM (PV VM) - CentOS 6.5 x86_x64 - PostgreSQL 9.3.5 x64
+- Network: 1000Base-T
+
+
+Test 1:
+- TestRig: SameHost
+- ColumnMap = column1=serial,column2=numeric,column3=character(64)
+- RowCount = 10000000
+- Stream: Memory
+
+Stream size: 899,009,659 bytes
+Stream time: 88,646ms
+DB insert time: 94,931ms
+Overall time: 183,701ms
+
+
+Test 2:
+- TestRig: SameHost
+- ColumnMap = column1=serial,column2=numeric,column3=character(64),column4=text(64)
+- RowCount = 5000000
+- Stream: Memory
+
+Stream size: 789,495,073 bytes
+Stream time: 59,426ms
+DB insert time: 72,036ms
+Overall time: 131,758ms
+
+Test 3:
+- TestRig: SameHost
+- ColumnMap = column1=serial,column2=numeric,column3=character(64),column4=text(64)
+- RowCount = 5000000
+- Stream: File/SSD
+
+Stream size: 789,496,985 bytes
+Stream time: 96,276ms
+DB insert time: 74,820ms
+Overall time: 171,345ms
+
+
+Test 3:
+- TestRig: SameHost
+- ColumnMap = column1=serial,column2=numeric,column3=character(64),column4=text(64),column5=character(128):multibyte
+- RowCount = 10000000
+- Stream: File/SSD
+
+Stream size: 1,835,997,857 bytes
+Stream time: 196,317ms
+DB insert time: 165,423ms
+Overall time: 361,974ms
+
+Test 4:
+- TestRig: RemoteDB
+- ColumnMap = column1=serial,column2=numeric,column3=character(64)
+- RowCount = 10000000
+- Stream: Memory
+
+Stream size: 898,997,431 bytes
+Stream time: 89,223ms
+DB insert time: 50,325ms
+Overall time: 139,580ms
+
+Test 5:
+- TestRig: RemoteDB
+- ColumnMap = column1=serial,column2=numeric,column3=character(64),column4=text(64)
+- RowCount = 5000000
+- Stream: Memory
+
+Stream size: 789,494,241 bytes
+Stream time: 59,891ms
+DB insert time: 37,221ms
+Overall time: 97,361ms
+
+Test 6:
+- TestRig: RemoteDB
+- ColumnMap = column1=serial,column2=numeric,column3=character(64),column4=text(64),column5=character(128):multibyte
+- RowCount = 10000000
+- Stream: File/SSD
+
+Stream size: 1,835,995,699 bytes
+Stream time: 194,253ms
+DB insert time: 80,955ms
+Overall time: 275,411ms
